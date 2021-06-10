@@ -5,7 +5,7 @@ authors = ["Eric Berquist <eric.berquist@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-GSL = "1.1.0"
+GSL = "4.0.1"
 
 [dev-dependencies]
 criterion = "0.3"
