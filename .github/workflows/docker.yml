@@ -30,17 +30,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache var-cache-apt
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: var-cache-apt
           key: var-cache-apt-${{ hashFiles('Containerfile') }}
       - name: Cache var-lib-apt
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: var-lib-apt
           key: var-lib-apt-${{ hashFiles('Containerfile') }}
       - name: Cache cargo
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: cargo
           key: cargo-${{ hashFiles('Containerfile') }}
