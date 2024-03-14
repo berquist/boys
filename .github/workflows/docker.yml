@@ -45,17 +45,17 @@ jobs:
           path: cargo
           key: cargo-${{ hashFiles('Containerfile') }}
       - name: Inject var-cache-apt into Docker
-        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.4
         with:
           cache-source: var-cache-apt
           cache-target: /var/cache/apt
       - name: Inject var-lib-apt into Docker
-        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.4
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
       - name: Inject cargo into Docker
-        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.4
         with:
           cache-source: cargo
           cache-target: /code/boys/target
