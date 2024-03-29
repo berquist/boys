@@ -15,8 +15,11 @@ jobs:
     uses: ./.github/workflows/nix.yml
   unit-tests:
     uses: ./.github/workflows/test.yml
+  docker:
+    needs: [nix, unit-tests]
+    uses: ./.github/workflows/docker.yml
   all:
-    needs: [unit-tests]
+    needs: [unit-tests, publish]
     runs-on: ubuntu-22.04
     steps:
       - name: Success
