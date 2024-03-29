@@ -1,7 +1,14 @@
 ---
-on: [push, pull_request]
+name: test
 
-name: CI
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: test-${{github.ref}}-${{github.event.pull_request.number || github.run_number}}
+  cancel-in-progress: true
 
 jobs:
   build_and_test:
