@@ -19,7 +19,7 @@ jobs:
     needs: [nix, unit-tests]
     uses: ./.github/workflows/docker.yml
   all:
-    needs: [unit-tests, publish]
+    needs: [unit-tests, docker]
     runs-on: ubuntu-22.04
     steps:
       - name: Success
