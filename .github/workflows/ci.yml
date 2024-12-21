@@ -1,0 +1,26 @@
+---
+name: ci
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{github.ref}}-${{github.event.pull_request.number || github.run_number}}
+  cancel-in-progress: true
+
+jobs:
+  nix:
+    uses: ./.github/workflows/nix.yml
+  unit-tests:
+    uses: ./.github/workflows/test.yml
+  docker:
+    needs: [nix, unit-tests]
+    uses: ./.github/workflows/docker.yml
+  all:
+    needs: [unit-tests, docker]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success
+        run: "true"
