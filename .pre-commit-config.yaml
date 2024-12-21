@@ -6,7 +6,7 @@ repos:
       - id: check-hooks-apply
       - id: check-useless-excludes
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.6.0"
+    rev: "v5.0.0"
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -16,6 +16,6 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/Mateusz-Grzelinski/actionlint-py
-    rev: "v1.6.27.13"
+    rev: "v1.7.4.20"
     hooks:
       - id: actionlint
