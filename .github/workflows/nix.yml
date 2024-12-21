@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   nix-build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       # Install Nix on the runner
       - uses: cachix/install-nix-action@v26

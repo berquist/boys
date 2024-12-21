@@ -20,7 +20,7 @@ jobs:
     uses: ./.github/workflows/docker.yml
   all:
     needs: [unit-tests, docker]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Success
         run: "true"
