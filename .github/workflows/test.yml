@@ -22,6 +22,11 @@ jobs:
           - nightly
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: clean up cargo bin dir for rustup
+        run: |
+          rm "${HOME}"/.cargo/bin/cargo-fmt
+          rm "${HOME}"/.cargo/bin/rust-analyzer
+          rm "${HOME}"/.cargo/bin/rustfmt
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: cargo build --verbose
       - run: cargo test --verbose
