@@ -11,9 +11,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  prechecks:
+    uses: ./.github/workflows/pre-commit.yml
+  separate-zizmor:
+    uses: ./.github/workflows/zizmor.yml
+  all-prechecks:
+    needs: [prechecks, separate-zizmor]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success
+        run: "true"
   nix:
+    needs: [all-prechecks]
     uses: ./.github/workflows/nix.yml
   unit-tests:
+    needs: [all-prechecks]
     uses: ./.github/workflows/test.yml
   docker:
     needs: [nix, unit-tests]
