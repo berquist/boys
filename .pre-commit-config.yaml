@@ -16,7 +16,7 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/Mateusz-Grzelinski/actionlint-py
-    rev: "v1.7.4.20"
+    rev: "v1.7.7.23"
     hooks:
       - id: actionlint
   - repo: https://github.com/woodruffw/zizmor-pre-commit
