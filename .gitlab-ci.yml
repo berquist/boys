@@ -9,7 +9,7 @@ stages:
 
 build:
   stage: build
-  image: quay.io/buildah/stable@sha256:55419157cc2b0ead57850fcb29b302aaf1968086446cb3f4d2ee3621f1063bc5
+  image: quay.io/buildah/stable@sha256:468b9b2c0ea48be162c098004ea067f34964a9dd8ac6dcbb9a715bc45d1236e9
   variables:
     # Use vfs with buildah. Docker offers overlayfs as a default, but Buildah
     # cannot stack overlayfs on top of another overlayfs filesystem.
