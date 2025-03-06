@@ -6,7 +6,6 @@ mod data;
 
 pub fn boys(n: u64, x: f64) -> f64 {
     let eps = 1.0e-14;
-    let max_recursion_depth = 6;
     if n == 0 && x < eps {
         1.0
     } else if n == 0 {
@@ -18,12 +17,12 @@ pub fn boys(n: u64, x: f64) -> f64 {
             * (PI / x.powi(2 * n as i32 + 1)).sqrt()
     } else if x > 10.0 {
         let j = ((x - 9.95) * 10.0) as usize;
-        let dx = data::BOYS_FUNC_VALUES_L[j][0] - x as f64;
+        let dx = data::BOYS_FUNC_VALUES_L[j][0] - x;
         let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
+        for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
+            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -33,12 +32,12 @@ pub fn boys(n: u64, x: f64) -> f64 {
         lres
     } else if x > 5.0 {
         let j = ((x - 4.975) * 20.0) as usize;
-        let dx = data::BOYS_FUNC_VALUES_M[j][0] - x as f64;
+        let dx = data::BOYS_FUNC_VALUES_M[j][0] - x;
         let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
+        for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
+            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -48,12 +47,12 @@ pub fn boys(n: u64, x: f64) -> f64 {
         lres
     } else {
         let j = ((x * 40.0) + 0.5) as usize;
-        let dx = data::BOYS_FUNC_VALUES_S[j][0] - x as f64;
+        let dx = data::BOYS_FUNC_VALUES_S[j][0] - x;
         let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
+        for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
+            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -100,6 +99,8 @@ mod tests {
         println!("-----------------------------------------------------------------------------------------------");
     }
 }
+
+const MAX_RECURSION_DEPTH: usize = 6;
 
 const N_FAC_DBLE: [f64; 6] = [1.0, 2.0, 6.0, 24.0, 120.0, 720.0];
 

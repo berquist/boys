@@ -1,5 +1,3 @@
-use boys;
-
 #[test]
 fn api() {
     let thresh = 1.0e-16;
