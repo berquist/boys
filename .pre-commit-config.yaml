@@ -1,5 +1,10 @@
 ---
 fail_fast: false
+ci:
+  skip:
+    - cargo-fmt
+    - cargo-check
+    - cargo-clippy
 repos:
   - repo: meta
     hooks:
