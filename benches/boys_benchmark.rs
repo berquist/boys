@@ -1,8 +1,6 @@
 #[macro_use]
 extern crate criterion;
 
-use boys;
-
 use criterion::Criterion;
 
 fn criterion_benchmark(c: &mut Criterion) {
