@@ -1,5 +1,5 @@
 #![allow(clippy::excessive_precision, clippy::unreadable_literal)]
-pub const BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
+pub(crate) static BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     [
         0.000e0,
         0.1000000000000000e+01,
@@ -5228,7 +5228,7 @@ pub const BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     ],
 ];
 
-pub const BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
+pub(crate) static BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
     [
         5.00e0,
         0.3957123096105136E+00,
@@ -7857,7 +7857,7 @@ pub const BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
     ],
 ];
 
-pub const BOYS_FUNC_VALUES_L: [[f64; 24]; 401] = [
+pub(crate) static BOYS_FUNC_VALUES_L: [[f64; 24]; 401] = [
     [
         10.0e0,
         0.2802473905066428e+00,
