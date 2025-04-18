@@ -3,7 +3,7 @@
 
   # Flake inputs
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2305.491812.tar.gz";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay"; # A helper for Rust + Nix
   };
 
@@ -40,6 +40,7 @@
         default = pkgs.mkShell {
           # The Nix packages provided in the environment
           packages = (with pkgs; [
+            gsl
             # The package provided by our custom overlay. Includes cargo, Clippy, cargo-fmt,
             # rustdoc, rustfmt, and other tools.
             rustToolchain
