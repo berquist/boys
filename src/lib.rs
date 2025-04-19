@@ -26,6 +26,6 @@
 /// An exact implementation using the gamma and incomplete gamma functions.
 pub mod exact;
 /// These are disabled until their correctness is confirmed.
-mod jeffhammond;
-///
+// mod jeffhammond;
+/// TODO
 pub mod micb25;
