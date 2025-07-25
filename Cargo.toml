@@ -19,3 +19,20 @@ criterion = "=0.7.0"
 [[bench]]
 name = "boys_benchmark"
 harness = false
+
+[lints.rust]
+invalid_reference_casting = "deny"
+unknown-lints = "deny"
+# warnings = "deny"
+
+[lints.clippy]
+cast_lossless = "deny"
+cast_possible_truncation = "deny"
+cast_possible_wrap = "deny"
+cast_precision_loss = "deny"
+cast_sign_loss = "deny"
+char_lit_as_u8 = "deny"
+fn_to_numeric_cast = "deny"
+fn_to_numeric_cast_with_truncation = "deny"
+ptr_as_ptr = "deny"
+unnecessary_cast = "deny"
