@@ -1,4 +1,5 @@
 pub fn boys(n: u64, x: f64) -> f64 {
+    #[allow(clippy::cast_precision_loss)]
     let n = n as f64;
     if x > 0.0 {
         let f = 2.0 * x.powf(n + 0.5);
