@@ -1,6 +1,6 @@
-use std::f64::consts::PI;
+use std::{convert::TryFrom, f64::consts::PI};
 
-use rgsl::error::erf;
+use rgsl::{error::erf, Pow};
 
 mod data;
 
@@ -11,18 +11,25 @@ pub fn boys(n: u64, x: f64) -> f64 {
     } else if n == 0 {
         (PI / (4.0 * x)).sqrt() * erf(x.sqrt())
     } else if x < eps {
-        1.0 / ((2.0 * n as f64) + 1.0)
+        #[allow(clippy::cast_precision_loss)]
+        let n = n as f64;
+        1.0 / ((2.0 * n) + 1.0)
     } else if x > 50.0 {
-        N_FAC2_DBLE[(2 * (n - 1) + 2) as usize] / 2.0_f64.powi(n as i32 + 1)
-            * (PI / x.powi(2 * n as i32 + 1)).sqrt()
+        let ns = usize::try_from(n).unwrap();
+        let n32 = u32::try_from(n).unwrap();
+        N_FAC2_DBLE[2 * (ns - 1) + 2] / 2.0_f64.pow_uint(n32 + 1)
+            * (PI / x.pow_uint(2 * n32 + 1)).sqrt()
     } else if x > 10.0 {
-        let j = ((x - 9.95) * 10.0) as usize;
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
+        let j = ((x - 9.95) * 10.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_L[j][0] - x;
         let mut dxi = dx;
-        let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
+        let n = usize::try_from(n).unwrap();
+        let mut lres = data::BOYS_FUNC_VALUES_L[j][n + 1];
         let epsrel = lres * eps;
         for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
-            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dxi / fac;
+            let sfac = data::BOYS_FUNC_VALUES_L[j][n + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -31,13 +38,16 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else if x > 5.0 {
-        let j = ((x - 4.975) * 20.0) as usize;
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
+        let j = ((x - 4.975) * 20.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_M[j][0] - x;
         let mut dxi = dx;
-        let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
+        let n = usize::try_from(n).unwrap();
+        let mut lres = data::BOYS_FUNC_VALUES_M[j][n + 1];
         let epsrel = lres * eps;
         for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
-            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dxi / fac;
+            let sfac = data::BOYS_FUNC_VALUES_M[j][n + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -46,13 +56,16 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else {
-        let j = ((x * 40.0) + 0.5) as usize;
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
+        let j = ((x * 40.0) + 0.5).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_S[j][0] - x;
         let mut dxi = dx;
-        let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
+        let n = usize::try_from(n).unwrap();
+        let mut lres = data::BOYS_FUNC_VALUES_S[j][n + 1];
         let epsrel = lres * eps;
         for (i, fac) in N_FAC_DBLE.iter().enumerate().take(MAX_RECURSION_DEPTH) {
-            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dxi / fac;
+            let sfac = data::BOYS_FUNC_VALUES_S[j][n + 2 + i] * dxi / fac;
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -67,6 +80,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
 mod tests {
     use super::boys;
     use std::fs;
+
     #[test]
     fn test_boys() {
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
