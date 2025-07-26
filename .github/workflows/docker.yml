@@ -56,17 +56,17 @@ jobs:
           path: cargo
           key: cargo-${{ hashFiles('Dockerfile') }}
       - name: Inject var-cache-apt into Docker
-        uses: reproducible-containers/buildkit-cache-dance@5b6db76d1da5c8b307d5d2e0706d266521b710de # v3.1.2
+        uses: reproducible-containers/buildkit-cache-dance@5b81f4d29dc8397a7d341dba3aeecc7ec54d6361 # v3.3.0
         with:
           cache-source: var-cache-apt
           cache-target: /var/cache/apt
       - name: Inject var-lib-apt into Docker
-        uses: reproducible-containers/buildkit-cache-dance@5b6db76d1da5c8b307d5d2e0706d266521b710de # v3.1.2
+        uses: reproducible-containers/buildkit-cache-dance@5b81f4d29dc8397a7d341dba3aeecc7ec54d6361 # v3.3.0
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
       - name: Inject cargo into Docker
-        uses: reproducible-containers/buildkit-cache-dance@5b6db76d1da5c8b307d5d2e0706d266521b710de # v3.1.2
+        uses: reproducible-containers/buildkit-cache-dance@5b81f4d29dc8397a7d341dba3aeecc7ec54d6361 # v3.3.0
         with:
           cache-source: cargo
           cache-target: /code/boys/target
