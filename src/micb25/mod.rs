@@ -18,6 +18,8 @@ pub fn boys(n: u64, x: f64) -> f64 {
         N_FAC2_DBLE[2 * (ns - 1) + 2] / 2.0_f64.pow_uint(n32 + 1)
             * (PI / x.pow_uint(2 * n32 + 1)).sqrt()
     } else if x > 10.0 {
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
         let j = ((x - 9.95) * 10.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_L[j][0] - x;
         let mut dxi = dx;
@@ -34,6 +36,8 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else if x > 5.0 {
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
         let j = ((x - 4.975) * 20.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_M[j][0] - x;
         let mut dxi = dx;
@@ -50,6 +54,8 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else {
+        #[allow(clippy::cast_possible_truncation)]
+        #[allow(clippy::cast_sign_loss)]
         let j = ((x * 40.0) + 0.5).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_S[j][0] - x;
         let mut dxi = dx;
