@@ -1,9 +1,10 @@
-use std::{convert::TryFrom, f64::consts::PI};
+use core::{convert::TryFrom as _, f64::consts::PI};
 
-use rgsl::{Pow, error::erf};
+use rgsl::{error::erf, Pow as _};
 
 mod data;
 
+#[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
     let eps = 1.0e-14_f64;
     if n == 0 && x < eps {
@@ -13,7 +14,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
     } else if x < eps {
         #[expect(clippy::cast_precision_loss)]
         let n = n as f64;
-        1.0 / 2.0f64.mul_add(n, 1.0)
+        1.0 / 2.0_f64.mul_add(n, 1.0)
     } else if x > 50.0 {
         let ns = usize::try_from(n).unwrap();
         let n32 = u32::try_from(n).unwrap();
@@ -82,7 +83,9 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn test_boys() {
+    fn boys_works() {
+        //! Recreate the table from
+        //! https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
 
         println!(
@@ -120,10 +123,13 @@ mod tests {
     }
 }
 
+/// Level of summation to perform
 const MAX_RECURSION_DEPTH: usize = 6;
 
+/// Precomputed values of factorial
 const N_FAC_DBLE: [f64; 6] = [1.0, 2.0, 6.0, 24.0, 120.0, 720.0];
 
+/// Precomputed values of double factorial
 const N_FAC2_DBLE: [f64; 31] = [
     1.0,
     1.0,

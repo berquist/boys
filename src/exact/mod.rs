@@ -1,5 +1,6 @@
 use rgsl::gamma_beta;
 
+#[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
     #[expect(clippy::cast_precision_loss)]
     let n = n as f64;
@@ -22,7 +23,7 @@ mod tests {
     use super::boys;
 
     #[test]
-    fn test_boys() {
+    fn boys_works() {
         let thresh = 1.0e-16;
         let ref_2_2p0 = 0.052_942_814_832_976_5;
         let ref_14_42p6 = 2.657_817_295_171_181_4e-14;

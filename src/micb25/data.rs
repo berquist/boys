@@ -1,3 +1,5 @@
+//! Precomputed interpolation tables
+
 #![allow(clippy::excessive_precision, clippy::unreadable_literal)]
 pub static BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     [
