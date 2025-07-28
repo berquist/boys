@@ -12,6 +12,7 @@ edition = "2024"
 
 [dependencies]
 GSL = "7.0.0"
+typed_floats = "1.0.6"
 
 [dev-dependencies]
 criterion = "=0.7.0"
