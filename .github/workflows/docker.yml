@@ -14,6 +14,7 @@ permissions: {}
 
 jobs:
   docker:
+    name: Build inside of Docker image
     runs-on: ubuntu-latest
     permissions:
       packages: write
