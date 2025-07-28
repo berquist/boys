@@ -8,7 +8,7 @@ license = "LGPL3"
 readme = "README.md"
 categories = ["science"]
 keywords = ["Chemistry"]
-edition = "2018"
+edition = "2024"
 
 [dependencies]
 GSL = "7.0.0"
