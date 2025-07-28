@@ -26,6 +26,10 @@ repos:
       - id: cargo-fmt
       - id: cargo-check
       - id: cargo-clippy
+  - repo: https://github.com/google/yamlfmt
+    rev: "v0.17.2"
+    hooks:
+      - id: yamlfmt
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.7
     hooks:
