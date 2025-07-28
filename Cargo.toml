@@ -26,6 +26,7 @@ unknown-lints = "deny"
 # warnings = "deny"
 
 [lints.clippy]
+# The individual components of `as_conversion`
 cast_lossless = "deny"
 cast_possible_truncation = "deny"
 cast_possible_wrap = "deny"
@@ -36,3 +37,7 @@ fn_to_numeric_cast = "deny"
 fn_to_numeric_cast_with_truncation = "deny"
 ptr_as_ptr = "deny"
 unnecessary_cast = "deny"
+
+linkedlist = "deny"
+lossy_float_literal = "deny"
+macro_use_imports = "deny"
