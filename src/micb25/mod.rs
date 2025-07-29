@@ -13,7 +13,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
     } else if x < eps {
         #[allow(clippy::cast_precision_loss)]
         let n = n as f64;
-        1.0 / ((2.0 * n) + 1.0)
+        1.0 / 2.0f64.mul_add(n, 1.0)
     } else if x > 50.0 {
         let ns = usize::try_from(n).unwrap();
         let n32 = u32::try_from(n).unwrap();
@@ -58,7 +58,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
     } else {
         #[allow(clippy::cast_possible_truncation)]
         #[allow(clippy::cast_sign_loss)]
-        let j = ((x * 40.0) + 0.5).floor() as usize;
+        let j = x.mul_add(40.0, 0.5).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_S[j][0] - x;
         let mut dxi = dx;
         let n = usize::try_from(n).unwrap();
