@@ -11,7 +11,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
             .val;
         g * gi / f
     } else {
-        1.0 / (n * 2.0 + 1.0)
+        1.0 / n.mul_add(2.0, 1.0)
     }
 }
 
