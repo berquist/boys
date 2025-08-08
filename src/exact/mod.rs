@@ -1,5 +1,6 @@
 use rgsl::gamma_beta;
 
+#[inline]
 #[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
     #[expect(clippy::cast_precision_loss)]
