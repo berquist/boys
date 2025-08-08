@@ -1,6 +1,8 @@
-//! Precomputed interpolation tables
+//! TODO Precomputed interpolation tables
 
 #![allow(clippy::excessive_precision, clippy::unreadable_literal)]
+
+/// TODO
 pub static BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     [
         0.000e0,
@@ -5230,6 +5232,7 @@ pub static BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     ],
 ];
 
+/// TODO
 pub static BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
     [
         5.00e0,
@@ -7859,6 +7862,7 @@ pub static BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
     ],
 ];
 
+/// TODO
 pub static BOYS_FUNC_VALUES_L: [[f64; 24]; 401] = [
     [
         10.0e0,
