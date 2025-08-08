@@ -1,4 +1,4 @@
-use std::f64::consts::PI;
+use core::f64::consts::PI;
 
 fn inverse_factorial(n: u64) -> f64 {
     let mut r = 1.0;
@@ -64,23 +64,23 @@ pub fn boys1(n: u64, x: f64) -> f64 {
                 );
             } else {
                 println!(
-                "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1} {:>2}",
-                n,
-                k,
-                x,
-                inverse_factorial(k),
-                x.powf(k as f64),
-                b,
-                s,
-                boys_asymp(n, x),
-                k + 1,
-                if b.abs() < 1.0e-14 { '*' } else { ' ' },
-                if (boys_asymp(n, x) - s).abs() < 1.0e-10 {
-                    "**"
-                } else {
-                    "  "
-                }
-            );
+                    "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1} {:>2}",
+                    n,
+                    k,
+                    x,
+                    inverse_factorial(k),
+                    x.powf(k as f64),
+                    b,
+                    s,
+                    boys_asymp(n, x),
+                    k + 1,
+                    if b.abs() < 1.0e-14 { '*' } else { ' ' },
+                    if (boys_asymp(n, x) - s).abs() < 1.0e-10 {
+                        "**"
+                    } else {
+                        "  "
+                    }
+                );
             }
         }
         k += 1;
@@ -150,20 +150,20 @@ fn boys2(n: u64, x: f64) -> f64 {
         #[cfg(test)]
         {
             println!(
-                    "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
-                    n,
-                    k,
-                    x,
-                    2.0 * n as f64 + 2.0 * k as f64 + 1.0,
-                    knsum,
-                    inverse_factorial(k),
-                    invkfact,
-                    x.powf(k as f64),
-                    xpower,
-                    boys_term(n, k, x),
-                    bterm_odd,
-                    sum,
-                    fast
+                "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
+                n,
+                k,
+                x,
+                2.0 * n as f64 + 2.0 * k as f64 + 1.0,
+                knsum,
+                inverse_factorial(k),
+                invkfact,
+                x.powf(k as f64),
+                xpower,
+                boys_term(n, k, x),
+                bterm_odd,
+                sum,
+                fast
             );
         }
         k += 1;
