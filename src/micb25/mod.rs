@@ -4,6 +4,7 @@ use rgsl::{error::erf, Pow as _};
 
 mod data;
 
+#[inline]
 #[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
     let eps = 1.0e-14_f64;
