@@ -26,6 +26,7 @@ repos:
       - id: cargo-fmt
       - id: cargo-check
       - id: cargo-clippy
+        args: ["--all-targets", "--all-features", "--", "-D", "warnings"]
   - repo: https://github.com/google/yamlfmt
     rev: "v0.17.2"
     hooks:
