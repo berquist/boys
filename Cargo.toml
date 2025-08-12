@@ -42,9 +42,12 @@ absolute_paths = "deny"
 allow_attributes = "deny"
 # allow_attributes_without_reason
 almost_complete_range = "deny"
-# arbitrary_source_item_ordering
+arbitrary_source_item_ordering = "allow"
 arc_with_non_send_sync = "deny"
-# arithmetic_side_effects = "deny"
+# There are a number of indexing locations where checked addition and
+# multiplication could be used, but they are for static arrays; the indexing
+# will fail before overflow occurs.
+arithmetic_side_effects = "allow"
 as_pointer_underscore = "deny"
 as_underscore = "deny"
 assertions_on_constants = "deny"
