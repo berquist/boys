@@ -127,7 +127,8 @@ mod tests {
     #[test]
     fn boys_works() {
         //! Recreate the table from
-        //! https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90
+        //! <https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90>
+        #[expect(clippy::expect_used)]
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
 
         println!("-----------------------------------------------------------------------------------------------");
