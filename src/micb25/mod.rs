@@ -78,46 +78,6 @@ pub fn boys(n: u64, x: f64) -> f64 {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::boys;
-    use std::fs;
-
-    #[test]
-    fn boys_works() {
-        //! Recreate the table from
-        //! https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90
-        let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
-
-        println!("-----------------------------------------------------------------------------------------------");
-        println!(
-            "{:>5} {:>22} {:>22} {:>22} {:>22}",
-            "N", "X", "calc.value", "ref. value", "diff"
-        );
-        println!("-----------------------------------------------------------------------------------------------");
-        for line in data.lines() {
-            let tokens: Vec<&str> = line.split_whitespace().collect();
-            // Allow comments
-            if tokens[0] != "#" {
-                let n: u64 = tokens[0].parse().unwrap();
-                let t: f64 = tokens[1].parse().unwrap();
-                let m: f64 = tokens[2].parse().unwrap();
-                let res = boys(n, t);
-                println!(
-                    "{:5} {:22.16} {:22.16} {:22.16} {:22.16}",
-                    n,
-                    t,
-                    res,
-                    m,
-                    res - m
-                );
-                assert!((res - m).abs() < 1.0e-12);
-            }
-        }
-        println!("-----------------------------------------------------------------------------------------------");
-    }
-}
-
 /// Level of summation to perform
 const MAX_RECURSION_DEPTH: usize = 6;
 
@@ -158,3 +118,43 @@ const N_FAC2_DBLE: [f64; 31] = [
     1_428_329_123_020_800.0,
     6_190_283_353_629_375.0,
 ];
+
+#[cfg(test)]
+mod tests {
+    use super::boys;
+    use std::fs;
+
+    #[test]
+    fn boys_works() {
+        //! Recreate the table from
+        //! https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90
+        let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
+
+        println!("-----------------------------------------------------------------------------------------------");
+        println!(
+            "{:>5} {:>22} {:>22} {:>22} {:>22}",
+            "N", "X", "calc.value", "ref. value", "diff"
+        );
+        println!("-----------------------------------------------------------------------------------------------");
+        for line in data.lines() {
+            let tokens: Vec<&str> = line.split_whitespace().collect();
+            // Allow comments
+            if tokens[0] != "#" {
+                let n: u64 = tokens[0].parse().unwrap();
+                let t: f64 = tokens[1].parse().unwrap();
+                let m: f64 = tokens[2].parse().unwrap();
+                let res = boys(n, t);
+                println!(
+                    "{:5} {:22.16} {:22.16} {:22.16} {:22.16}",
+                    n,
+                    t,
+                    res,
+                    m,
+                    res - m
+                );
+                assert!((res - m).abs() < 1.0e-12_f64);
+            }
+        }
+        println!("-----------------------------------------------------------------------------------------------");
+    }
+}
