@@ -1,4 +1,4 @@
-use std::f64::consts::PI;
+use core::f64::consts::PI;
 
 fn inverse_factorial(n: u64) -> f64 {
     let mut r = 1.0;

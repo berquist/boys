@@ -1,12 +1,16 @@
+use rgsl::gamma_beta;
+
+#[inline]
+#[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
-    #[allow(clippy::cast_precision_loss)]
+    #[expect(clippy::cast_precision_loss)]
     let n = n as f64;
     if x > 0.0 {
         let f = 2.0 * x.powf(n + 0.5);
-        let g = rgsl::gamma_beta::gamma::gamma(n + 0.5);
+        let g = gamma_beta::gamma::gamma(n + 0.5);
         // need the "upper" incomplete gamma function, integrate from x to infty
         // regularized -> divide by gamma function
-        let gi = rgsl::gamma_beta::incomplete_gamma::gamma_inc_P_e(n + 0.5, x)
+        let gi = gamma_beta::incomplete_gamma::gamma_inc_P_e(n + 0.5, x)
             .unwrap()
             .val;
         g * gi / f
