@@ -1,27 +1,28 @@
-use std::{convert::TryFrom, f64::consts::PI};
+use core::{convert::TryFrom as _, f64::consts::PI};
 
-use rgsl::{error::erf, Pow};
+use rgsl::{error::erf, Pow as _};
 
 mod data;
 
+#[must_use]
 pub fn boys(n: u64, x: f64) -> f64 {
-    let eps = 1.0e-14;
+    let eps = 1.0e-14_f64;
     if n == 0 && x < eps {
         1.0
     } else if n == 0 {
         (PI / (4.0 * x)).sqrt() * erf(x.sqrt())
     } else if x < eps {
-        #[allow(clippy::cast_precision_loss)]
+        #[expect(clippy::cast_precision_loss)]
         let n = n as f64;
-        1.0 / 2.0f64.mul_add(n, 1.0)
+        1.0 / 2.0_f64.mul_add(n, 1.0)
     } else if x > 50.0 {
         let ns = usize::try_from(n).unwrap();
         let n32 = u32::try_from(n).unwrap();
         N_FAC2_DBLE[2 * (ns - 1) + 2] / 2.0_f64.pow_uint(n32 + 1)
             * (PI / x.pow_uint(2 * n32 + 1)).sqrt()
     } else if x > 10.0 {
-        #[allow(clippy::cast_possible_truncation)]
-        #[allow(clippy::cast_sign_loss)]
+        #[expect(clippy::cast_possible_truncation)]
+        #[expect(clippy::cast_sign_loss)]
         let j = ((x - 9.95) * 10.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_L[j][0] - x;
         let mut dxi = dx;
@@ -38,8 +39,8 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else if x > 5.0 {
-        #[allow(clippy::cast_possible_truncation)]
-        #[allow(clippy::cast_sign_loss)]
+        #[expect(clippy::cast_possible_truncation)]
+        #[expect(clippy::cast_sign_loss)]
         let j = ((x - 4.975) * 20.0).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_M[j][0] - x;
         let mut dxi = dx;
@@ -56,8 +57,8 @@ pub fn boys(n: u64, x: f64) -> f64 {
         }
         lres
     } else {
-        #[allow(clippy::cast_possible_truncation)]
-        #[allow(clippy::cast_sign_loss)]
+        #[expect(clippy::cast_possible_truncation)]
+        #[expect(clippy::cast_sign_loss)]
         let j = x.mul_add(40.0, 0.5).floor() as usize;
         let dx = data::BOYS_FUNC_VALUES_S[j][0] - x;
         let mut dxi = dx;
@@ -82,7 +83,9 @@ mod tests {
     use std::fs;
 
     #[test]
-    fn test_boys() {
+    fn boys_works() {
+        //! Recreate the table from
+        //! https://github.com/micb25/libboys/blob/7d7cb7951d48da3db912b14dbb47e2f6edbd5c85/TESTING/boys_test.f90
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
 
         println!("-----------------------------------------------------------------------------------------------");
@@ -114,10 +117,13 @@ mod tests {
     }
 }
 
+/// Level of summation to perform
 const MAX_RECURSION_DEPTH: usize = 6;
 
+/// Precomputed values of factorial
 const N_FAC_DBLE: [f64; 6] = [1.0, 2.0, 6.0, 24.0, 120.0, 720.0];
 
+/// Precomputed values of double factorial
 const N_FAC2_DBLE: [f64; 31] = [
     1.0,
     1.0,
