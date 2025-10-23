@@ -28,7 +28,7 @@ repos:
       - id: cargo-clippy
         args: ["--all-targets", "--all-features", "--", "-D", "warnings"]
   - repo: https://github.com/google/yamlfmt
-    rev: "v0.19.0"
+    rev: "v0.20.0"
     hooks:
       - id: yamlfmt
   - repo: https://github.com/rhysd/actionlint
