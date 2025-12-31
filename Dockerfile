@@ -1,4 +1,4 @@
-FROM rust:1.92@sha256:48851a839d6a67370c9dbe0e709bedc138e3e404b161c5233aedcf2b717366e4 AS builder
+FROM rust:1.92@sha256:910b9dc6597a3ef16458dc1d20520714d3526ddb038749b8d87334798064d672 AS builder
 
 LABEL org.opencontainers.image.source=https://github.com/berquist/boys
 LABEL org.opencontainers.image.description="build image for boys Rust crate"
