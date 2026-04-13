@@ -42,17 +42,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache var-cache-apt
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7  # v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae  # v5
         with:
           path: var-cache-apt
           key: var-cache-apt-${{ hashFiles('Dockerfile') }}
       - name: Cache var-lib-apt
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7  # v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae  # v5
         with:
           path: var-lib-apt
           key: var-lib-apt-${{ hashFiles('Dockerfile') }}
       - name: Cache cargo
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7  # v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae  # v5
         with:
           path: cargo
           key: cargo-${{ hashFiles('Dockerfile') }}
