@@ -9,6 +9,10 @@ git checkout 9edf42871a13cd8a1bc8adfd3bbde29c33753878
 cargo asm --lib boys::exact::boys >before.s
 git checkout main
 # Otherwise we don't see the code
-gsed -i 's/#\[inline\]/#[inline(never)]/g' src/micb25/mod.rs src/exact/mod.rs
+SED=sed
+if command -v gsed >&/dev/null; then
+	SED=gsed
+fi
+${SED} -i 's/#\[inline\]/#[inline(never)]/g' src/micb25/mod.rs src/exact/mod.rs
 cargo asm --lib boys::exact::boys >after.s
 git checkout -- .
