@@ -6,3 +6,5 @@ Cargo.lock
 cobertura.xml
 
 .direnv/
+before.s
+after.s
