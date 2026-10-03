@@ -17,7 +17,7 @@ jobs:
     name: Build inside of Docker image
     runs-on: ubuntu-latest
     permissions:
-      packages: write
+      packages: write  # writing built images to container registry
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
