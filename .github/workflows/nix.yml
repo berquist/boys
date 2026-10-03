@@ -15,7 +15,7 @@ permissions: {}
 jobs:
   nix-build:
     name: Check Nix flake
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Install Nix
         uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24  # v31
