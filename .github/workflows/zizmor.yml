@@ -17,10 +17,9 @@ jobs:
     name: zizmor latest via PyPI
     runs-on: ubuntu-latest
     permissions:
-      security-events: write
-      # required for workflows in private repositories
-      contents: read
-      actions: read
+      security-events: write  # for writing results
+      contents: read  # only needed for private or internal repos
+      actions: read  # only needed for private or internal repos
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
