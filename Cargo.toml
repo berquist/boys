@@ -22,7 +22,7 @@ harness = false
 
 [lints.rust]
 invalid_reference_casting = "deny"
-unknown-lints = "deny"
+unknown_lints = "deny"
 # warnings = "deny"
 
 [lints.clippy]
@@ -102,7 +102,7 @@ const_is_empty = "deny"
 copy_iterator = "deny"
 crate_in_macro_def = "deny"
 create_dir = "deny"
-crosspointer-transmute = "deny"
+crosspointer_transmute = "deny"
 dbg_macro = "deny"
 # decimal_literal_representation
 declare_interior_mutable_const = "deny"
