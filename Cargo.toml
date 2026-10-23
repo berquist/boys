@@ -1,6 +1,6 @@
 [package]
 name = "boys"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Eric Berquist <eric.berquist@gmail.com>"]
 description = "Different algorithms for calculating the Boys function"
 repository = "https://github.com/berquist/boys"
