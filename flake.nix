@@ -29,7 +29,13 @@
         # Provides a `rustToolchain` attribute for Nixpkgs that we can use to
         # create a Rust environment
         (self: super: {
-          rustToolchain = super.rust-bin.stable.latest.default;
+          rustToolchain = super.rust-bin.stable.latest.default.override {
+            # rust-analyzer needs rust-src to analyze the standard library.
+            extensions = [
+              "rust-src"
+              "rust-analyzer"
+            ];
+          };
         })
       ];
     in
