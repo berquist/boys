@@ -57,7 +57,7 @@
                 # rustdoc, rustfmt, and other tools.
                 rustToolchain
               ])
-              ++ pkgs.lib.optionals pkgs.stdenv.isDarwin (with pkgs; [ libiconv ]);
+              ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin (with pkgs; [ libiconv ]);
           };
         }
       );
