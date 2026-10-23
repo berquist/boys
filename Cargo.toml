@@ -11,7 +11,7 @@ keywords = ["Chemistry"]
 edition = "2018"
 
 [dependencies]
-GSL = "7.0.0"
+GSL = { git = "https://github.com/GuillaumeGomez/rust-GSL.git", rev = "c73b6f3b13d82ae36f99c3f99b82824c417da1dc", version = "8.0.0" }
 
 [dev-dependencies]
 criterion = "=0.8.2"
@@ -22,7 +22,7 @@ harness = false
 
 [lints.rust]
 invalid_reference_casting = "deny"
-unknown-lints = "deny"
+unknown_lints = "deny"
 # warnings = "deny"
 
 [lints.clippy]
@@ -102,7 +102,7 @@ const_is_empty = "deny"
 copy_iterator = "deny"
 crate_in_macro_def = "deny"
 create_dir = "deny"
-crosspointer-transmute = "deny"
+crosspointer_transmute = "deny"
 dbg_macro = "deny"
 # decimal_literal_representation
 declare_interior_mutable_const = "deny"
@@ -138,7 +138,7 @@ elidable_lifetime_names = "deny"
 else_if_without_else = "deny"
 empty_docs = "deny"
 empty_drop = "deny"
-empty_enum = "deny"
+empty_enums = "deny"
 empty_enum_variants_with_brackets = "deny"
 empty_line_after_doc_comments = "deny"
 empty_line_after_outer_attr = "deny"
@@ -186,7 +186,6 @@ format_collect = "deny"
 format_in_format_args = "deny"
 format_push_string = "deny"
 four_forward_slashes = "deny"
-from_iter_instead_of_collect = "deny"
 from_over_into = "deny"
 from_raw_with_void_ptr = "deny"
 from_str_radix_10 = "deny"
