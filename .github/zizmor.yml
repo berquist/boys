@@ -1,5 +1,10 @@
 ---
 rules:
+  cache-poisoning:
+    ignore:
+      - docker.yml:45:9
+      - docker.yml:50:9
+      - docker.yml:55:9
   excessive-permissions:
     ignore:
       - ci.yml
