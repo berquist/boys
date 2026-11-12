@@ -50,7 +50,6 @@
           # The Nix packages provided in the environment
           packages =
             (with pkgs; [
-              gsl
               # The package provided by our custom overlay. Includes cargo, Clippy, cargo-fmt,
               # rustdoc, rustfmt, and other tools.
               rustToolchain

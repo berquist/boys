@@ -1,6 +1,6 @@
 use core::{convert::TryFrom as _, f64::consts::PI};
 
-use rgsl::{error::erf, Pow as _};
+use gsl_oxide_special::{error_functions::erf, Pow as _};
 
 mod data;
 
