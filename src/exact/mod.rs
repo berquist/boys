@@ -1,4 +1,4 @@
-use rgsl::gamma_beta;
+use gsl_oxide_special::{gamma, incomplete_gamma};
 
 #[inline]
 #[must_use]
@@ -7,12 +7,9 @@ pub fn boys(n: u64, x: f64) -> f64 {
     let n = n as f64;
     if x > 0.0 {
         let f = 2.0 * x.powf(n + 0.5);
-        let g = gamma_beta::gamma::gamma(n + 0.5);
-        // need the "upper" incomplete gamma function, integrate from x to infty
-        // regularized -> divide by gamma function
-        let gi = gamma_beta::incomplete_gamma::gamma_inc_P_e(n + 0.5, x)
-            .unwrap()
-            .val;
+        let g = gamma::gamma(n + 0.5).unwrap_or(f64::NAN);
+        // The regularized lower incomplete gamma is P(a, x) = γ(a, x) / Γ(a).
+        let gi = incomplete_gamma::lower_regularized(n + 0.5, x).unwrap_or(f64::NAN);
         g * gi / f
     } else {
         1.0 / n.mul_add(2.0, 1.0)
